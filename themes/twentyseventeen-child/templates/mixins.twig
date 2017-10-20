@@ -1,0 +1,70 @@
+{#
+	A useful set of functions you can import into twig templates
+	Example:
+
+	{% import "mixins.twig" as mixin %}
+
+	{{ mixin.image( url, alt, link ) }}
+	===========================================================
+#}
+
+{# Add post block for Events, Blog, Forums #}
+{% macro mixinName(data) %}
+
+    {# Allow use of mixins in mixin #}
+    {% import _self as mixin %}
+    {#
+        Add your macro code here using the optional data parameter
+    #}
+
+{% endmacro %}
+
+{# Add cover background image with given opacity #}
+{% macro bgImg(src,opacity=0) %}
+
+    {# Allow use of mixins in mixin #}
+    {% import _self as mixin %}
+
+    background-position : 50% 50%;
+    background-size:cover;
+    min-height: 150px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, {{ opacity }}), rgba(0, 0, 0, {{ opacity }})), url('{{src}}');
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, {{ opacity }}), rgba(0, 0, 0, {{ opacity }})), url('{{src}}');
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, {{ opacity }}), rgba(0, 0, 0, {{ opacity }})), url('{{src}}');
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, {{ opacity }}), rgba(0, 0, 0, {{ opacity }})), url('{{src}}');
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, {{ opacity }})), to(rgba(0, 0, 0, {{ opacity }}))), url('{{src}}');
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, {{ opacity }}), rgba(0, 0, 0, {{ opacity }})), url('{{src}}');
+
+{% endmacro %}
+
+{# Add cover background image with given opacity #}
+{% macro postBlock(data) %}
+
+    {# Allow use of mixins in mixin #}
+    {% import _self as mixin %}
+
+    <div  class="col-md-4">
+        <div class="inner card">
+            <a href="{{ data.link }}">
+                <div class="p-3" style="{{ mixin.bgImg(data.image,0.3) }}">
+                    <h3 class="text-white pb-4 pt-0">{{ data.title }}</h3>
+                </div>
+            </a>
+            <div class="p-3 text-center">
+                {% if data.date is not empty %}
+                    <p class="text-muted"><i>Date: {{ data.date }}</i></p>
+                {% endif %}
+                {% if data.price is not empty %}
+                    <h4>R{{ data.price }}</h4>
+                {% endif %}
+                <p class="text-left">{{ data.excerpt }}</p>
+                {% if data.purchase_link is not empty %}
+                    <a href="{{ data.purchase_link }}" ><button type="button" class="btn btn-primary">{{ data.button_text }}</button></a>
+                {% else %}
+                    <a href="{{ data.link }}" ><button type="button" class="btn btn-primary">{{ data.button_text }}</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </div><!-- #primary -->
+
+{% endmacro %}

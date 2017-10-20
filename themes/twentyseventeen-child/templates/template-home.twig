@@ -1,0 +1,95 @@
+{# Choose base on which to extend this template #}
+{% extends "base.twig" %}
+
+{# Import macros for use in this template #}
+{% import "mixins.twig" as mixin %}
+
+{# Twig block to be included in Base.twig #}
+{% block content %}
+    <div class="wrapper home-wrapper" id="page-wrapper" xmlns="http://www.w3.org/1999/html">
+
+        {#<section id="featured-products" class="py-5 container">#}
+
+            {#<div class="row">#}
+                {#<div class="col-12 mb-3">#}
+                    {#<h3 class="d-inline-block">Featured products</h3>#}
+                    {#<a class="float-right" href="/shop" ><button type="button" class="btn btn-primary">View all</button></a>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+
+                {#{% for item in products %}#}
+
+                    {# Set up the blog product data for mixin #}
+                    {#{%#}
+                    {#set itemData = {#}
+                    {#title : item.title,#}
+                    {#link: item.link,#}
+                    {#image : item.thumbnail.src,#}
+                    {#excerpt : item.post_excerpt,#}
+                    {#price : item._price,#}
+                    {#button_text : 'Add to cart',#}
+                    {#purchase_link : fn('do_shortcode','[add_to_cart_url id="'~item.ID~'"]'),#}
+                    {#}#}
+                    {#%}#}
+                    {#{{ mixin.postBlock(itemData) }}#}
+
+                {#{% endfor %}#}
+
+            {#</div><!-- #row -->#}
+
+        {#</section><!-- #content -->#}
+
+        <section id="featured-posts" class="py-5 container">
+
+            {#{{ dump(blog_posts) }}#}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h3 class="d-inline-block">Featured posts</h3>
+                    <a class="float-right" href="/blog" ><button type="button" class="btn btn-primary">View all</button></a>
+                </div>
+            </div>
+            <div class="row">
+
+
+                {% for item in blog_posts %}
+
+                    <div  class="col-md-4">
+                        <div class="inner card">
+                            <a href="{{ item.link }}">
+                                <div class="p-3" style="background-size:cover;background-image: url('{{ item.thumbnail.src }}'); background-position: 50% 50%; min-height: 150px">
+                                    <h3 class="text-white pb-4 pt-0">{{ item.title }}</h3>
+                                </div>
+                            </a>
+                            <div class="p-3">
+                                <p>{{ item.post_excerpt }}</p>
+                                <a href="{{ item.link }}">Read more -></a>
+                            </div>
+                        </div>
+                    </div><!-- #primary -->
+
+                     {#Set up the blog post data for mixin#}
+                    {#{%#}
+                    {#set itemData = { #}
+                    {#title : item.title,#}
+                    {#date : item.date|date('j F'),#}
+                    {#link: item.link,#}
+                    {#image : item.thumbnail.src,#}
+                    {#excerpt : item.post_excerpt,#}
+                    {#button_text : 'Read more ->',#}
+                    {#}#}
+                    {#%}#}
+                    {#{{ mixin.postBlock(itemData) }}#}
+
+
+                {% endfor %}
+
+            </div><!-- #row -->
+
+        </section><!-- #content -->
+
+    </div><!-- #wrapper -->
+
+
+
+{% endblock %}
