@@ -10,36 +10,36 @@
 
 
         {#Set up the blog product band with data for mixin#}
-        <section id="featured-products" class="py-5 container">
+        {#<section id="featured-products" class="py-5 container">#}
 
-            <div class="row">
-                <div class="col-12 mb-3">
-                    <h3 class="d-inline-block">Featured products</h3>
-                    <a class="float-right" href="/shop" ><button type="button" class="btn btn-primary">View all</button></a>
-                </div>
-            </div>
-            <div class="row">
+            {#<div class="row">#}
+                {#<div class="col-12 mb-3">#}
+                    {#<h3 class="d-inline-block">Featured products</h3>#}
+                    {#<a class="float-right" href="/shop" ><button type="button" class="btn btn-primary">View all</button></a>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
 
-                {% for item in products %}
+                {#{% for item in products %}#}
 
-                    {%
-                    set itemData = {
-                    title : item.title,
-                    link: item.link,
-                    image : item.thumbnail.src,
-                    excerpt : item.post_excerpt,
-                    price : item._price,
-                    button_text : 'Add to cart',
-                    purchase_link : fn('do_shortcode','[add_to_cart_url id="'~item.ID~'"]'),
-                    }
-                    %}
-                    {{ mixin.postBlock(itemData) }}
+                    {#{%#}
+                    {#set itemData = {#}
+                    {#title : item.title,#}
+                    {#link: item.link,#}
+                    {#image : item.thumbnail.src,#}
+                    {#excerpt : item.post_excerpt,#}
+                    {#price : item._price,#}
+                    {#button_text : 'Add to cart',#}
+                    {#purchase_link : fn('do_shortcode','[add_to_cart_url id="'~item.ID~'"]'),#}
+                    {#}#}
+                    {#%}#}
+                    {#{{ mixin.postBlock(itemData) }}#}
 
-                {% endfor %}
+                {#{% endfor %}#}
 
-            </div><!-- #row -->
+            {#</div><!-- #row -->#}
 
-        </section><!-- #content -->
+        {#</section><!-- #content -->#}
 
         <section id="latest-posts" class="py-5 container">
 
