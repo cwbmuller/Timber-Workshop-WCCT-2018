@@ -26,7 +26,15 @@ if ( class_exists( 'Timber' ) ) {
     // Get featured products
     $product_args = array(
         'post_type' => 'product',
-        'numberposts' => 3
+        'numberposts' => 3,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_visibility',
+                'field'    => 'name',
+                'terms'    => 'featured',
+                'operator' => 'IN'
+            ),
+        )
     );
 
     // Set featured products to context

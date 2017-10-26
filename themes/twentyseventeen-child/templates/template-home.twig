@@ -8,37 +8,38 @@
 {% block content %}
     <div class="wrapper home-wrapper" id="page-wrapper" xmlns="http://www.w3.org/1999/html">
 
-        {#<section id="featured-products" class="py-5 container">#}
 
-            {#<div class="row">#}
-                {#<div class="col-12 mb-3">#}
-                    {#<h3 class="d-inline-block">Featured products</h3>#}
-                    {#<a class="float-right" href="/shop" ><button type="button" class="btn btn-primary">View all</button></a>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="row">#}
+        {#Set up the blog product band with data for mixin#}
+        <section id="featured-products" class="py-5 container">
 
-                {#{% for item in products %}#}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h3 class="d-inline-block">Featured products</h3>
+                    <a class="float-right" href="/shop" ><button type="button" class="btn btn-primary">View all</button></a>
+                </div>
+            </div>
+            <div class="row">
 
-                     {#Set up the blog product data for mixin#}
-                    {#{%#}
-                    {#set itemData = {#}
-                    {#title : item.title,#}
-                    {#link: item.link,#}
-                    {#image : item.thumbnail.src,#}
-                    {#excerpt : item.post_excerpt,#}
-                    {#price : item._price,#}
-                    {#button_text : 'Add to cart',#}
-                    {#purchase_link : fn('do_shortcode','[add_to_cart_url id="'~item.ID~'"]'),#}
-                    {#}#}
-                    {#%}#}
-                    {#{{ mixin.postBlock(itemData) }}#}
+                {% for item in products %}
 
-                {#{% endfor %}#}
+                    {%
+                    set itemData = {
+                    title : item.title,
+                    link: item.link,
+                    image : item.thumbnail.src,
+                    excerpt : item.post_excerpt,
+                    price : item._price,
+                    button_text : 'Add to cart',
+                    purchase_link : fn('do_shortcode','[add_to_cart_url id="'~item.ID~'"]'),
+                    }
+                    %}
+                    {{ mixin.postBlock(itemData) }}
 
-            {#</div><!-- #row -->#}
+                {% endfor %}
 
-        {#</section><!-- #content -->#}
+            </div><!-- #row -->
+
+        </section><!-- #content -->
 
         <section id="latest-posts" class="py-5 container">
 
