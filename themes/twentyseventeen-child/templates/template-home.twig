@@ -20,7 +20,7 @@
 
                 {#{% for item in products %}#}
 
-                    {# Set up the blog product data for mixin #}
+                     {#Set up the blog product data for mixin#}
                     {#{%#}
                     {#set itemData = {#}
                     {#title : item.title,#}
@@ -40,12 +40,12 @@
 
         {#</section><!-- #content -->#}
 
-        <section id="featured-posts" class="py-5 container">
+        <section id="latest-posts" class="py-5 container">
 
             {#{{ dump(blog_posts) }}#}
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h3 class="d-inline-block">Featured posts</h3>
+                    <h3 class="d-inline-block">Latest posts</h3>
                     <a class="float-right" href="/blog" ><button type="button" class="btn btn-primary">View all</button></a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
 
                      {#Set up the blog post data for mixin#}
                     {#{%#}
-                    {#set itemData = { #}
+                    {#set itemData = {#}
                     {#title : item.title,#}
                     {#date : item.date|date('j F'),#}
                     {#link: item.link,#}
